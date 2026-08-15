@@ -12,3 +12,19 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
+function displayBooks() {
+
+    const container = document.querySelector('#library-container');
+    container.innerHTML = "";
+
+    myLibrary.forEach((book) => {
+        const card = document.createElement("div");
+        card.innerHTML = `
+            <p>${book.title}<p>
+            <p>${book.author}</p>
+            <p>${book.pages} pages</p>
+            <p>${book.read ? "Read" : "Not read"}</p>
+        `;
+        container.appendChild(card);
+    });
+}
