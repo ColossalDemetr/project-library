@@ -28,3 +28,27 @@ function displayBooks() {
         container.appendChild(card);
     });
 }
+
+// Dialog window
+
+const dialog = document.querySelector("#book-dialog");
+const newBookBtn = document.querySelector("#new-book-btn");
+const form = document.querySelector("#book-form");
+
+newBookBtn.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = document.querySelector("#pages").value;
+    const read = document.querySelector("#read").checked;
+
+    addBookToLibrary(title, author, pages, read);
+    displayBooks();
+    dialog.close();
+    form.reset();
+});
