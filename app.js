@@ -25,11 +25,17 @@ function displayBooks() {
             <p>${book.author}</p>
             <p>${book.pages} pages</p>
             <p>${book.read ? "Read" : "Not read"}</p>
+            <button class="toggle-btn">Read?</button>
             <button class="delete-btn">Delete</button>
         `;
 
         card.querySelector(".delete-btn").addEventListener("click", () => {
             myLibrary.splice(myLibrary.findIndex(b => b.id === book.id), 1);
+            displayBooks();
+        });
+
+        card.querySelector(".toggle-btn").addEventListener("click", () => {
+            book.read = !book.read;
             displayBooks();
         });
 
