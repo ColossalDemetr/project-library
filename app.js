@@ -5,6 +5,7 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = crypto.randomUUID();
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -20,12 +21,20 @@ function displayBooks() {
     myLibrary.forEach((book) => {
         const card = document.createElement("div");
         card.innerHTML = `
-            <p>${book.title}<p>
+            <p>${book.title}</p>
             <p>${book.author}</p>
             <p>${book.pages} pages</p>
             <p>${book.read ? "Read" : "Not read"}</p>
+            <button class="delete-btn">Delete</button>
         `;
+
+        card.querySelector(".delete-btn").addEventListener("click", () => {
+            myLibrary.splice(myLibrary.findIndex(b => b.id === book.id), 1);
+            displayBooks();
+        });
+
         container.appendChild(card);
+
     });
 }
 
